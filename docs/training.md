@@ -102,11 +102,11 @@ Checkpoints are too large for GitHub (340 MB > 100 MB limit). Use one of:
    ```bash
    pip install huggingface_hub
    huggingface-cli login
-   huggingface-cli upload YOUR_USERNAME/ipd-gender-vit-stage1 checkpoints/stage1/best --repo-type=model
+   huggingface-cli upload abhshkp/footfall-analysis-vit-stage1 checkpoints/stage1/best --repo-type=model
    ```
    Teammates download:
    ```bash
-   huggingface-cli download YOUR_USERNAME/ipd-gender-vit-stage1 --local-dir checkpoints/stage1/best
+   huggingface-cli download abhshkp/footfall-analysis-vit-stage1 --local-dir checkpoints/stage1/best
    ```
 
 2. **Google Drive**: share the `IPD_checkpoints/` folder with "Anyone with the link".

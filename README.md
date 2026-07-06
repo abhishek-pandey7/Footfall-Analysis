@@ -141,7 +141,7 @@ If you already have a trained checkpoint uploaded to Hugging Face:
 1. Open the `test_model.ipynb` notebook.
 2. Update the repository name:
    ```python
-   HF_REPO = "YOUR_USERNAME/ipd-gender-vit-stage1"
+   HF_REPO = "abhshkp/footfall-analysis-vit-stage1"
    ```
 3. Run the notebook cells to upload a test video and get an annotated MP4 output.
 
@@ -168,10 +168,10 @@ You can push and pull checkpoints directly to the Hugging Face Hub using the Hug
 huggingface-cli login
 
 # Upload a local checkpoint
-huggingface-cli upload YOUR_USERNAME/ipd-gender-vit-stage1 checkpoints/stage1/best --repo-type=model
+huggingface-cli upload abhshkp/footfall-analysis-vit-stage1 checkpoints/stage1/best --repo-type=model
 
 # Download the checkpoint to a local directory
-huggingface-cli download YOUR_USERNAME/ipd-gender-vit-stage1 --local-dir checkpoints/stage1/best
+huggingface-cli download abhshkp/footfall-analysis-vit-stage1 --local-dir checkpoints/stage1/best
 ```
 
 ### Google Drive
