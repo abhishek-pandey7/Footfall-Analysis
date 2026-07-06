@@ -1,4 +1,4 @@
-"""Dataset classes for PETA, RAP, SCface, and stage-2 user folder."""
+"""Dataset classes for PETA and stage-2 user folder."""
 from __future__ import annotations
 import csv
 from pathlib import Path
@@ -37,9 +37,16 @@ class FolderPerClassDataset(Dataset):
         for name, idx in GENDER_TO_IDX.items():
             d = self.root / name
             if not d.exists(): continue
+            seen = set()
             for ext in exts:
-                for img in d.glob(f"*{ext}"): self.rows.append((img, idx))
-                for img in d.glob(f"*{ext.upper()}"): self.rows.append((img, idx))
+                for img in d.glob(f"*{ext}"):
+                    if img not in seen:
+                        seen.add(img)
+                        self.rows.append((img, idx))
+                for img in d.glob(f"*{ext.upper()}"):
+                    if img not in seen:
+                        seen.add(img)
+                        self.rows.append((img, idx))
         if not self.rows: raise RuntimeError(f"No images in {self.root}/{{male,female}}/")
     def __len__(self): return len(self.rows)
     def __getitem__(self, idx):

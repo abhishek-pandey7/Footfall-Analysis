@@ -11,8 +11,6 @@ The training pipeline consists of two distinct stages:
 ```mermaid
 graph TD
     A[PETA Dataset] --> D[Stage 1: Base Attribute Training]
-    B[RAP Dataset] --> D
-    C[SCface Dataset] --> D
     D -->|Push to HF Hub| E(Stage 1 Checkpoint)
     E --> F[Stage 2: Target Domain Fine-Tuning]
     G[Local User Data] --> F
@@ -23,7 +21,6 @@ graph TD
 ### Why ViT over CLIP for classification?
 - **Vision-Only Focus**: CLIP is a vision-language model. Fine-tuning it for a binary gender head discards the text encoder, reducing a large multi-modal architecture to a simple classifier. 
 - **Efficiency and Specialization**: ViT acts as a pure, high-performance vision backbone. It is better suited for fine-tuning on structural pedestrian attributes.
-- **Role of CLIP**: CLIP is used only once during the SCface preprocessing stage as a method to generate initial auto-labels for correction. It is not used in the training or inference loop.
 
 ---
 
@@ -35,7 +32,7 @@ graph TD
 ├── src/
 │   └── training/
 │       ├── __init__.py
-│       ├── datasets.py         # PyTorch Dataset definitions for PETA, RAP, and SCface
+│       ├── datasets.py         # PyTorch Dataset definitions for PETA and stage-2 user data
 │       ├── model.py            # GenderClassifier model definition (ViT backbone + Linear head)
 │       ├── trainer.py          # Custom trainer logic supporting linear probing and full fine-tuning
 │       └── transforms.py       # Data augmentation and preprocessing transforms
@@ -59,7 +56,7 @@ This repository contains three main notebooks to execute the workflow:
 
 | Notebook | Purpose | Usage Frequency |
 | :--- | :--- | :--- |
-| `train_stage1.ipynb` | Train on PETA, RAP, and SCface datasets. Push the best checkpoint to the Hugging Face Hub. | Once (or during major retraining runs). |
+| `train_stage1.ipynb` | Train on PETA dataset. Push the best checkpoint to the Hugging Face Hub. | Once (or during major retraining runs). |
 | `train_stage2.ipynb` | Load the Stage 1 checkpoint from the Hugging Face Hub. Fine-tune on your specific local domain data. Push the updated checkpoint back to the Hub. | Whenever new labeled target data is collected. |
 | `test_model.ipynb` | Load the final Stage 2 checkpoint from the Hugging Face Hub. Test the model performance on images and videos. | Every time you need to evaluate or verify model changes. |
 
@@ -68,7 +65,7 @@ This repository contains three main notebooks to execute the workflow:
 ## Training Strategy
 
 ### Stage 1: Base Attribute Training
-This stage trains the model on public pedestrian datasets (PETA, RAP, and SCface) to establish strong baseline features.
+This stage trains the model on the public PETA pedestrian dataset to establish strong baseline features.
 
 1. **Phase A (Linear Probe)**:
    - **Configuration**: Backbone frozen, classification head active.
@@ -101,7 +98,7 @@ This stage adapts the pre-trained Stage 1 model to your specific domain (such as
 
 ## Dataset Layout
 
-To train Stage 1, download the PETA, RAP, and SCface datasets as detailed in `scripts/download_datasets.md`.
+To train Stage 1, download the PETA dataset as detailed in `scripts/download_datasets.md`.
 To train Stage 2, prepare your local dataset in the following directory format:
 
 ```
@@ -122,8 +119,6 @@ data/
 | Dataset | Sample Count | Label Source |
 | :--- | :--- | :--- |
 | PETA | ~19,000 | `personalMale` attributes |
-| RAP | ~42,000 | Gender column in `RAP_annotation.mat` |
-| SCface | ~4,160 | Auto-labeled via CLIP (with manual verification) |
 | Local User Data | Variable | Hand-labeled by organizing into folders |
 
 ---

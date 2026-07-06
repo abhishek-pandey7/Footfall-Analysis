@@ -5,7 +5,7 @@ This document explains the **what** and **why** of two-stage fine-tuning. The **
 ## Overview
 
 ```
-Stage 1: PETA + RAP + SCface  →  checkpoints/stage1/best/  (saved to Google Drive)
+Stage 1: PETA  →  checkpoints/stage1/best/  (saved to Google Drive)
 Stage 2: your data, lower LR  →  checkpoints/stage2/best/   (used at inference)
 ```
 
@@ -15,9 +15,8 @@ The backbone is `google/vit-base-patch16-224` — a **pure vision transformer** 
 
 CLIP is a vision-language model (VLM). Fine-tuning it for a binary gender head throws away the text encoder and reduces a powerful multi-modal model to a simple classifier. ViT is a pure vision backbone — better suited for fine-tuning on a visual attribute task.
 
-CLIP is used once (in the SCface auto-labeling cell) as a one-time shortcut to generate initial gender labels for the 130 SCface subjects. The trained model never touches CLIP.
 
-## Stage 1 — PETA + RAP + SCface
+## Stage 1 — PETA
 
 - **Phase A** (3 epochs, linear probe): backbone frozen, head only @ LR 1e-3.
 - **Phase B** (10 epochs, full fine-tune): backbone unfrozen @ LR 1e-5 with cosine decay + 10% warmup.
@@ -71,13 +70,11 @@ For the complete pipeline (tracking + ReID + footfall counting + reports):
 
 ## Datasets
 
-See `scripts/download_datasets.md` for where to download PETA, RAP, and SCface.
+See `scripts/download_datasets.md` for where to download the PETA dataset.
 
 | Dataset  | Images  | Gender source |
 |----------|---------|---------------|
 | PETA     | ~19,000 | `personalMale` attribute or `Label.txt` files |
-| RAP      | ~42,000 | gender column in `RAP_annotation.mat` |
-| SCface   | ~4,160  | no public labels — auto-labeled via CLIP, you correct |
 
 ## Tuning tips
 
