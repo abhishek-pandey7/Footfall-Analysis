@@ -24,10 +24,20 @@ graph TD
 
 ---
 
+## Documentation
+
+- **Architecture Diagrams**: For detailed flowcharts of the inference pipeline and internal model structure, see the [Architecture Overview](file:///e:/projects/Footfall-Analysis/docs/architecture/README.md).
+- **Fine-Tuning Guide**: For a detailed explanation of tuning stages, learning rates, and dataset configuration, see [training.md](file:///e:/projects/Footfall-Analysis/docs/training.md).
+
+---
+
 ## Repository Layout
 
 ```
 ├── docs/
+│   ├── architecture/
+│   │   ├── README.md           # Architecture diagrams overview and explanation
+│   │   └── gender_model_architecture.mmd # Gender model architecture diagram (Mermaid)
 │   └── training.md             # Detailed guide explaining stages and tuning strategies
 ├── src/
 │   └── training/
