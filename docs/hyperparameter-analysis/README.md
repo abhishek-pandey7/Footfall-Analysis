@@ -11,9 +11,9 @@ Below is a summary of the hyperparameters evaluated, the values tested, and the 
 | Hyperparameter | Tested Values | Optimal Value | Conclusion & Impact |
 | :--- | :--- | :--- | :--- |
 | **[Backbone Learning Rate](learning_rate.md)** | `1e-4`, `1e-5`, `1e-7` | **`1e-5`** | Avoids underfitting seen at `1e-7` and offers a smoother, safer convergence curve than `1e-4` on longer runs. |
-| **[Linear Probing Duration](linear_probing.md)** | `0` epochs, `3` epochs | **`3` epochs** | Warms up the random classification head first, preventing potential contamination of pre-trained backbone weights. |
-| **[Weight Decay](weight_decay.md)** | `0.0`, `0.01`, `0.1`, `0.5` | **`0.01`** | Generalization gaps were similar at 4 epochs, but a standard non-zero weight decay is recommended for long-term weight stability. |
-| **[Warmup Ratio](warmup_ratio.md)** | `0.0`, `0.1`, `0.4` | **`0.1`** | A 10% warmup duration successfully stabilizes early training without limiting progression in later steps. |
+| **[Linear Probing Duration](linear_probing.md)** | `0` to `4` epochs | **`4` epochs** | Some degree of linear probing meaningfully aids generalization, with 4 epochs yielding the highest final validation accuracy (97.8%). |
+| **[Weight Decay](weight_decay.md)** | `0.0`, `0.001`, `0.01`, `0.05`, `0.1`, `0.3`, `0.5` | **`0.3`** | A weight decay of 0.3 achieved the lowest generalization gap and highest final validation accuracy, demonstrating clear benefit from regularization. |
+| **[Warmup Ratio](warmup_ratio.md)** | `0.0`, `0.05`, `0.1`, `0.2`, `0.3`, `0.4` | **`0.2`** | A 20% warmup ratio achieved the highest validation accuracy (97.68%), confirming that warmup stabilizes and improves final training performance. |
 
 ---
 
