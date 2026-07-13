@@ -21,7 +21,7 @@ An analysis of the effects of the color histogram bin count (`COLOR_BINS`) used 
 
 Below is the accuracy trend across the tested color bin counts:
 
-![Effect of Color Histogram Bin Count](images/color_bins_effect.png)
+![Effect of Color Histogram Bin Count](images/color_bins.png)
 
 ---
 

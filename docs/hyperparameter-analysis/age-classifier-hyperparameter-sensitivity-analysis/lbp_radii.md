@@ -21,7 +21,7 @@ An analysis of the effects of the multi-scale LBP radii combination (`LBP_RADII`
 
 Below is the accuracy comparison across the tested radii combinations:
 
-![Effect of Multi-scale LBP Radii](images/lbp_radii_effect.png)
+![Effect of Multi-scale LBP Radii](images/lbp_radii.png)
 
 ---
 

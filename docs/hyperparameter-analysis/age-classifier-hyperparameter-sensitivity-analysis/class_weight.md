@@ -21,7 +21,7 @@ An analysis of the effects of the `class_weight` setting used during SVM trainin
 
 Below is the accuracy comparison between the two class-weighting settings:
 
-![Effect of Class Weighting](images/class_weight_effect.png)
+![Effect of Class Weighting](images/class_weight.png)
 
 ---
 

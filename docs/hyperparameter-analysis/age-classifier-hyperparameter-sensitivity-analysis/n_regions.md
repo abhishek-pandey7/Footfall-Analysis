@@ -21,7 +21,7 @@ An analysis of the effects of the number of body regions (`N_REGIONS`) used for 
 
 Below is the accuracy trend across the tested region counts:
 
-![Effect of Number of Body Regions](images/n_regions_effect.png)
+![Effect of Number of Body Regions](images/n_regions.png)
 
 ---
 

@@ -43,6 +43,7 @@ graph TD
 - **Architecture Diagrams**: For detailed flowcharts of the inference pipeline and internal model structure, see the [Architecture Overview](file:///e:/projects/Footfall-Analysis/docs/architecture/README.md).
 - **Fine-Tuning Guide**: For a detailed explanation of tuning stages, learning rates, and dataset configuration, see [training.md](file:///e:/projects/Footfall-Analysis/docs/training.md).
 - **Age Model Guide**: For the classical computer vision pipeline used for age classification (feature extraction, per-attribute SVMs), see the Age Attribute Model section in [training.md](file:///e:/projects/Footfall-Analysis/docs/training.md) and the `age_classifier_v3.ipynb` notebook.
+- **Hyperparameter Analysis**: For details on Stage 1 training hyperparameter tuning (learning rate, linear probing, weight decay, warmup ratio) and SVM feature extraction tuning (body regions, color bins, LBP points/radii, class weighting), see the [Hyperparameter Sensitivity Analysis Overview](file:///e:/projects/Footfall-Analysis/docs/hyperparameter-analysis/README.md).
 
 ---
 
@@ -54,6 +55,10 @@ graph TD
 │   │   ├── README.md           # Architecture diagrams overview and explanation
 │   │   ├── gender_model_architecture.mmd # Gender model architecture diagram (Mermaid)
 │   │   └── age_model_architecture.mmd    # Age model architecture diagram (Mermaid)
+│   ├── hyperparameter-analysis/
+│   │   ├── README.md           # Hyperparameter analysis overview and summaries
+│   │   ├── age-classifier-hyperparameter-sensitivity-analysis/ # Age SVM tuning docs & plots
+│   │   └── gender-classifier-hyperparameter-sensitivity-analysis/ # Gender ViT tuning docs & plots
 │   └── training.md             # Detailed guide explaining stages and tuning strategies
 ├── src/
 │   └── training/

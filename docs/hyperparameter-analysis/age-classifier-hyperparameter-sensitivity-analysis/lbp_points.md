@@ -21,7 +21,7 @@ An analysis of the effects of the number of LBP sampling points (`LBP_POINTS`) u
 
 Below is the accuracy trend across the tested LBP sampling point counts:
 
-![Effect of LBP Sampling Points](images/lbp_points_effect.png)
+![Effect of LBP Sampling Points](images/lbp_points.png)
 
 ---
 
