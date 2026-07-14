@@ -29,8 +29,8 @@ This keeps the age model directly comparable to the published baseline, rather t
 
 ## Stage 1 - PETA
 
-- **Phase A** (3 epochs, linear probe): backbone frozen, head only @ LR 1e-3.
-- **Phase B** (10 epochs, full fine-tune): backbone unfrozen @ LR 1e-5 with cosine decay + 10% warmup.
+- **Phase A** (4 epochs, linear probe): backbone frozen, head only @ LR 1e-3.
+- **Phase B** (10 epochs, full fine-tune): backbone unfrozen @ LR 1e-5 with cosine decay + 20% warmup.
 - Best checkpoint saved to `checkpoints/stage1/best/` and copied to Google Drive.
 
 ## Stage 2 - Your data, lower LR
@@ -41,7 +41,7 @@ This keeps the age model directly comparable to the published baseline, rather t
 
 ## Age model - PETA (single stage)
 
-- **Feature extraction**: each image is split into horizontal body regions. Per region, 16-bin RGB and HSV color histograms plus a uniform LBP texture histogram (radii 1, 2, 3), all L1-normalized, concatenated across regions.
+- **Feature extraction**: each image is split into 4 horizontal body regions. Per region, 16-bin RGB and HSV color histograms plus a uniform LBP texture histogram with 16 sampling points (radii 1, 2, 3), all L1-normalized, concatenated across regions.
 - **Per-attribute SVMs**: one SVM per age attribute (one vs rest), grid searched over a histogram-intersection kernel and an RBF kernel (`C` and `gamma`), best configuration per attribute chosen by validation mA.
 - No backbone to freeze or unfreeze and no linear probe / full fine-tune phases, it is a single training pass per attribute.
 - Best classifiers saved to `classifiers.pkl` (not pushed to Hugging Face Hub).

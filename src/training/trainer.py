@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 @dataclass
 class TrainConfig:
     output_dir: str = "checkpoints/run"
-    phase_a_epochs: int = 3
+    phase_a_epochs: int = 4
     phase_a_head_lr: float = 1e-3
     phase_b_epochs: int = 10
     phase_b_head_lr: float = 1e-5
@@ -17,8 +17,8 @@ class TrainConfig:
     batch_size: int = 64
     eval_batch_size: int = 128
     num_workers: int = 4
-    weight_decay: float = 0.01
-    warmup_ratio: float = 0.1
+    weight_decay: float = 0.3
+    warmup_ratio: float = 0.2
     grad_clip: float = 1.0
     fp16: bool = True
     log_every: int = 50
